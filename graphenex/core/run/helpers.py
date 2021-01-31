@@ -39,9 +39,6 @@ def parse_cli_args():
                         help="host and port to run the web interface")
     parser.add_argument('--open', action="store_true",
                         help="open browser on web server start")
-    parser.add_argument('run', metavar='namespace/module', type=str, nargs='?',
-                        default='none/none',
-                        help="module to harden")
     args = vars(parser.parse_args())
     return args
 

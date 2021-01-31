@@ -147,7 +147,7 @@ class ShellCommands(Help):
         max_width = table.column_max_width(1)
 
         if self.namespace:
-            for name, module in self.modules[self.namespace].items(): 
+            for name, module in self.modules[self.namespace].items():
                 wrapped = '\n'.join(textwrap.wrap(module.desc, max_width - 40))
                 table.table_data.append(
                     [self.namespace + "/" + name, wrapped])
@@ -157,7 +157,7 @@ class ShellCommands(Help):
                     wrapped = '\n'.join(textwrap.wrap(module.desc, max_width - 40))
                     table.table_data.append(
                         [k + "/" + name, wrapped])
-          
+
         print(table.table)
 
     def do_back(self, arg):
@@ -236,7 +236,7 @@ class ShellCommands(Help):
                     mod_ns = mod_namespace['mod_ns']
                 except:
                     pass
-                # Assigning property to the ModuleNameValidation class to 
+                # Assigning property to the ModuleNameValidation class to
                 # access modules within the selected namespace.
                 ModuleNameValidation.modules = self.modules[mod_ns].keys() \
                     if mod_ns in self.modules.keys() else []
@@ -327,7 +327,7 @@ class ShellCommands(Help):
 
     def do_preset(self, arg):
         """Show/execute the hardening module presets"""
-        
+
         presets = get_presets()
         if arg:
             modules = [preset['modules'] for preset in presets \
@@ -402,7 +402,7 @@ class ShellCommands(Help):
                 print(table.table)
             else:
                 logger.warn(f"No presets found in {mod_json_file}")
-            
+
     def complete_preset(self, text, line, begidx, endidx):
         """Complete preset command"""
 
@@ -419,6 +419,8 @@ class ShellCommands(Help):
         run_server({"host_port":arg} if arg else None, False)
 
     def do_harden(self, arg):
+        print("ARG:", arg)
+
         """Execute the hardening command"""
 
         if not (self.module and self.namespace):

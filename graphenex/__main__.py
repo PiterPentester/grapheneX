@@ -4,8 +4,10 @@
 from graphenex.core.utils.helpers import parse_cli_args, print_header
 from graphenex.core.utils.logcl import GraphenexLogger
 from graphenex.core.cli.shell import start_cli
+from graphenex.core.run.commands import ShellCommands
 from graphenex.core.web import run_server
 from graphenex import __version__
+
 
 logger = GraphenexLogger('Graphenex')
 
@@ -17,6 +19,9 @@ def main():
     print_header()
     if(args['web']):
         run_server(args)
+    if(args['run']):
+        print(args['run'])
+        ShellCommands().do_harden(args['run'])
     else:
         if args['open']:
             logger.warn("[--open] argument is unnecessary. " +
